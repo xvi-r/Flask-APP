@@ -1,0 +1,48 @@
+    {% extends "base.html" %}
+    {% block title %}Home{% endblock %}
+
+    {% block head%}
+    {% endblock %}
+
+    {% block body%}
+    {% with messages = get_flashed_messages() %}
+        {% for message in messages %}
+            <p style="color: rgb(255, 0, 0);">{{message}}</p>
+        {% endfor %}
+    {% endwith %}
+    
+    <h1>All users user list</h1><hr>
+
+    <table border="1" style="width:50%; text-align:left;">
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phash</th>
+        <th>IP</th>
+
+        {% for user in userList%}
+            <tr {% if loop.index0 % 2 == 0 %} style="background-color: rgb(208, 208, 236);" {% endif %}>    
+                <td>{{user._id}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.email}}</td>
+                <td>{{user.password_hash}}</td>
+                <td style="background-color: brown;">{{user.ip}}</td>
+            </tr>                                                           
+        {% endfor %}
+        
+    </table>   
+
+    <form action="#" method="POST">
+        <label for="emailKick">Email for user to kick</label>
+        <input type="emailKick" id="emailKick" name="emailKick"><br>
+
+        <label for="userBAN">Ban user via ip</label>
+        <input type="text" id="userBAN" name="userBAN"><br>
+
+        <input type="submit" value="submit">
+    </form>
+
+
+    
+
+    {% endblock %}

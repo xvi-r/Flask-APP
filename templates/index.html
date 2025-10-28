@@ -1,0 +1,89 @@
+{% extends "base.html" %} 
+{% block title %}Home{% endblock %} 
+
+{% block head%} 
+<style>  
+h1 {color: rgb(0, 255, 64); filter: drop-shadow(0 0 0.75rem rgb(0, 255, 76));} 
+h2 {color: rgb(136, 0, 0); filter: drop-shadow(0 0 0.75rem rgb(255, 0, 0));} 
+h3 {color:rgb(255, 0, 200); filter: drop-shadow(0 0 0.75rem rgb(225, 0, 255));}
+</style> 
+{% endblock %} 
+
+{% block body%} 
+{% with messages = get_flashed_messages() %} 
+{% for message in messages %} 
+<div class="alert alert-danger" role="alert">
+  {{message}}
+</div>
+{% endfor %} 
+{% endwith %} 
+
+<style> 
+/* Fullscreen video background */ 
+#bg-video { 
+    position: fixed; 
+    right: 0; 
+    bottom: 0; 
+    min-width: 100%; 
+    min-height: 100%; 
+    z-index: -1; /* behind everything */ 
+    object-fit: cover; 
+} 
+
+/* Content on top of the video */ 
+.content { 
+    position: relative; 
+    z-index: 1; 
+    color: white; 
+    text-align: center; 
+    margin-top: 20vh; 
+} 
+</style> 
+
+</head> 
+<body class="d-flex flex-column justify-content-center align-items-center vh-20 text-center"> 
+
+<!-- Background video --> 
+<video id="bg-video" autoplay muted loop playsinline preload="auto"> 
+    <source src="{{ url_for('static', filename='vid/Untitled video - Made with Clipchamp (46).mp4') }}" type="video/mp4"> 
+    Your browser does not support the video tag. 
+</video> 
+
+    <h1> Welcome </h1> 
+    {% if "username" in session %} 
+    <h3 style="color: rgb(0, 169, 236); filter: drop-shadow(0 0 0.75rem rgb(135, 211, 255));">Hi {{session["username"]}} How are you?</h3> 
+    {% endif %} 
+    <h2>{{curDate}}</h2> 
+    <h2 style="color: orange;">{{curTime}}</h2> 
+    <img style="filter: drop-shadow(0 0 1rem rgb(255, 0, 0));" src="{{ url_for('static', filename='img/Hard_Target.webp')}}"> 
+    
+{% if "username" in session %} 
+<h3> Logged in at: {{seshTS}}</h3> 
+{% else %} 
+<h2 style="color: rgb(255, 0, 0);">To do literally anything you must be logged in </h2> 
+{% endif %} 
+
+<div style="filter: drop-shadow(0 0 0.75rem rgb(126, 126, 126));">
+  <a href="{{url_for('login')}}" class="btn btn-primary m-2 px-4">Login</a>
+  <a href="{{url_for('signup')}}" class="btn btn-primary m-2 px-4">Sign Up</a>
+  <a href="{{ url_for('emailMe') }}" class="btn btn-info m-2 px-4">Email Me</a>
+  <a href="{{ url_for('userview') }}" class="btn btn-info m-2 px-4">User View</a>
+  <a href="{{ url_for('logout') }}" class="btn btn-warning m-2 px-4">Logout</a>
+  <a href="{{ url_for('admin') }}" class="btn btn-danger m-2 px-4">Admin Page</a>
+</div>
+
+<p style="color: azure;">Sessions last for 60 minutes</p>
+
+<form method="POST" class="d-flex flex-column align-items-center mt-4" style="max-width: 400px; margin:auto;">
+    <div class="mb-3 w-100">
+        <label for="streamerName" class="form-label text-white">Enter Streamer Name</label>
+        <input type="text" class="form-control" id="streamerName" name="streamerName" placeholder="teddybrown61" maxlength="20">
+    </div>
+</form>
+
+{% if streamerName != "" %}
+    <h2 {% if isLive == "🔴 NOT LIVE"%} style="color: brown;" {% else %} style="color: rgb(9, 255, 0); filter: drop-shadow(0 0 0.75rem rgb(0, 255, 76));" {% endif %} > {{streamerName}}: {{isLive|safe}} </h2>
+{% endif %}
+
+
+{% endblock %}

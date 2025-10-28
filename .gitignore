@@ -1,0 +1,28 @@
+# ------------------------------------
+# 1. SECRETS AND ENVIRONMENT
+# ------------------------------------
+.env
+venv/
+
+# ------------------------------------
+# 2. LOCAL DATA AND DATABASES (MYSQL USERS)
+# ------------------------------------
+# MySQL uses a remote server, but we ignore any remnants from local testing
+*.sqlite
+users.sqlite3
+
+# ------------------------------------
+# 3. PYTHON CACHE AND COMPILED FILES
+# ------------------------------------
+__pycache__/
+*.pyc
+*.o
+*.so
+
+# ------------------------------------
+# 4. IDE and OS Files
+# ------------------------------------
+# Ignore common editor and operating system files
+.DS_Store # Mac OS
+.vscode/ # VS Code settings
+.idea/ # PyCharm/IntelliJ settings

@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title%}Sign Up{% endblock %}
+
+{% block head %}
+    <style>
+    body {background: linear-gradient(90deg,rgba(0, 170, 255, 1) 0%, rgba(145, 0, 0, 1) 100%);}
+    </style>
+{% endblock %}
+
+{% block body%}
+
+{% with messages = get_flashed_messages() %} 
+{% for message in messages %} 
+<div class="alert alert-danger" role="alert">
+  {{message}}
+</div>
+{% endfor %} 
+{% endwith %} 
+
+    <h1>SignUp</h1>
+    <form action="/signup" method="post">
+        <label for="username" >Username: </label><br>
+        <input type="text" id="username" name="username" maxlength="20" required><br>
+        <label for="email">Email: </label><br>
+        <input type="email" id="email" name="email" required><br>
+        <label for="password">Password: </label><br>
+        <input type="password" id="password" name="password" required maxlength="20" minlength="8"><br>
+        <input type="submit" value="Submit">
+    </form>
+
+
+{% endblock %}

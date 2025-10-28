@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title%}Sign In{% endblock %}
+
+{% block head %}
+    <style>
+    body {background: linear-gradient(90deg,rgb(88, 88, 88) 0%, rgba(145, 0, 0, 1) 100%);}
+    </style>
+{% endblock %}
+
+{% block body%}
+
+{% with messages = get_flashed_messages() %} 
+    {% for message in messages %} 
+    <div class="alert alert-danger" role="alert">
+        {{message}}
+    </div>
+    {% endfor %} 
+{% endwith %} 
+
+    
+    <body class="d-flex flex-column justify-content-center align-items-center vh-20 text-center"> 
+    <h1>Log in</h1>
+    <form action="/login" method="post">
+        <label for="username">Username: </label><br>
+        <input type="text" id="username" name="username"><br>
+        <label for="email">Email: </label><br>
+        <input type="email" id="email" name="email"><br>
+        <label for="email">Password: </label><br>
+        <input type="password" id="password" name="password"><br>
+        <input type="submit" value="Submit">
+    </form>
+
+
+{% endblock %}

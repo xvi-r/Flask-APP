@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title%}User View{% endblock %}
+
+{% block head%}
+<style>
+body {background: linear-gradient(90deg,rgba(0, 170, 255, 1) 0%, rgba(145, 0, 0, 1) 100%);}
+h1   {color: blue;}
+p    {color: red;}
+</style>
+{% endblock %}
+
+{% block body%}
+
+    <h1>User View</h1>
+    <h2 style="color: blueviolet;"> Username: {{username}}</h2>
+    <h2 style="color: chartreuse;"> Username: {{email}}</h2>
+
+    <img src="{{url_for('static', filename='img/Kodai_Mining.png')}}" title="Kodai Certified"><br>
+     <a href="{{ url_for('home')}}">Home</a>
+    
+{% endblock %}
