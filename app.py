@@ -7,7 +7,7 @@ from datetime import timedelta, datetime
 from flask_sqlalchemy import SQLAlchemy
 import twitchGet
 import emailing
-import pymysql
+
 
 
 adminUsers = os.environ.get("ADMIN_USERS")
