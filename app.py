@@ -147,7 +147,7 @@ def signup():
             db.session.commit()
             flash(f"Account Successfully created!")
             session["time_stamp"] = datetime.now((SPAIN_TIMEZONE)).strftime('%a %d %b %Y, %I:%M%p')
-            emailing.sendMail(name, os.environ.get("EMAIL_HOST_USER"), "signed up admin email.txt")
+            emailing.sendMail(name, email, "signed up admin email.txt")
             
         elif Name_User:
             flash("User with that name already exists")
@@ -201,13 +201,16 @@ def admin():
         
         flash("USER DELETED")
         
-
-    if session.get("username") in adminUsers:
-        
-        flash(f"Access Granted {session["username"]} is admin")
-        return render_template("admin.html", userList=Users.query.all())
+    if "username" in session:
+        if session.get("username") in adminUsers:
+            
+            flash(f"Access Granted {session["username"]} is admin")
+            return render_template("admin.html", userList=Users.query.all())
+        else:
+            flash("ERROR: User is not an admin")
+            return redirect(url_for("home"))
     else:
-        flash("ERROR: User is not an admin")
+        flash("You Must Be Logged In")
         return redirect(url_for("home"))
 
 
