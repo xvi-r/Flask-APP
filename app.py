@@ -91,7 +91,7 @@ def home():
         
     return render_template(
         "index.html", 
-        curDate = datetime.now(SPAIN_TIMEZONE).strftime('%a %d %b %Y'),
+        curDate = datetime.now(SPAIN_TIMEZONE).strftime('%a %d %b %Y'),   #USES SPAIN TIMEZONE
         curTime = datetime.now(SPAIN_TIMEZONE).strftime('%I:%M%p'),
         seshTS = session.get("time_stamp"), 
         session = session,
