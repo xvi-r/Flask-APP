@@ -3,6 +3,5 @@ Flask-SQLAlchemy
 gunicorn
 python-dotenv
 werkzeug
-pymysql  
 requests
 mysqlclient 
