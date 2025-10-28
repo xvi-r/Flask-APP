@@ -1,6 +1,5 @@
 import os
-
-# FORCING REBUILD: Fix database URI
+from dotenv import load_dotenv
 from flask import Flask, redirect, url_for, render_template, request, session, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import timedelta, datetime
@@ -8,6 +7,15 @@ from flask_sqlalchemy import SQLAlchemy
 import twitchGet
 import emailing
 
+if os.environ.get("FLASK_ENV") == "development":
+    from dotenv import load_dotenv
+    load_dotenv()
+    # Use the SQLite URI for fast local dev (read from .env)
+    DB_URI = os.environ.get("DATABASE_URI_LOCAL")
+
+else:
+    # Use the MySQL URI injected by DigitalOcean (read from DO settings)
+    DB_URI = os.environ.get("DATABASE_URI")
 
 
 adminUsers = os.environ.get("ADMIN_USERS")
@@ -17,10 +25,11 @@ bannedIPs = []
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY")
 app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=60)
-app.config["SQLALCHEMY_DATABASE_URI"] = os.environ.get("DATABASE_URI")
+app.config["SQLALCHEMY_DATABASE_URI"] = DB_URI
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
+
 
 class Users(db.Model):
     _id = db.Column(db.Integer, primary_key = True)
@@ -136,7 +145,7 @@ def signup():
             db.session.commit()
             flash(f"Account Successfully created!")
             session["time_stamp"] = datetime.now().strftime('%a %d %b %Y, %I:%M%p')
-            emailing.sendMail("refractxvi@gmail.com", f"New User Signed Up", name, email)
+            emailing.sendMail(name, email, "signed up admin email.txt")
             
         elif Name_User:
             flash("User with that name already exists")
@@ -190,11 +199,8 @@ def admin():
         
         flash("USER DELETED")
         
-        
+
     if session.get("username") in adminUsers:
-        if not get_client_ip().startswith("192.168."):
-            flash("ERROR USER IS NOT ON ADMIN NETWORK")
-            return redirect(url_for("home"))
         
         flash(f"Access Granted {session["username"]} is admin")
         return render_template("admin.html", userList=Users.query.all())
@@ -205,6 +211,7 @@ def admin():
 
 @app.route("/emailMe")
 def emailMe():
-    emailing.sendMail(session["email"], "From Web")
+    emailing.sendMail(session["username"],session["email"], mailType="defaultEmail.txt")
     flash(f"Email sent to {session["email"]}")
     return redirect(url_for("home"))
+

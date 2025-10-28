@@ -1,0 +1,1 @@
+Default email to be sent to the user
