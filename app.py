@@ -216,7 +216,11 @@ def admin():
 
 @app.route("/emailMe")
 def emailMe():
-    emailing.sendMail(session["username"],session["email"], mailType="defaultEmail.txt")
-    flash(f"Email sent to {session["email"]}")
+    if "username" in session:
+        emailing.sendMail(session["username"],session["email"], mailType="defaultEmail.txt")
+        flash(f"Email sent to {session["email"]}")
+        print(f"{session["username"]} requested mail")
+    else:
+        flash("You must be logged in")
     return redirect(url_for("home"))
 

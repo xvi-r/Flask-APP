@@ -13,7 +13,11 @@ def sendMail(name,email,mailType):
         
     msg["Subject"] = "Email me"
     msg["From"] = os.environ.get("EMAIL_HOST_USER")
-    msg["To"] = email
+    
+    if mailType == "signed up admin email.txt":
+        msg["To"] = os.environ.get("EMAIL_HOST_USER")
+    else:
+        msg["To"] = email
 
 
     with smtplib.SMTP("smtp.gmail.com", 587) as smtp:
