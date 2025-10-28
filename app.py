@@ -208,7 +208,3 @@ def emailMe():
     emailing.sendMail(session["email"], "From Web")
     flash(f"Email sent to {session["email"]}")
     return redirect(url_for("home"))
-
-
-if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=5000)
