@@ -145,7 +145,7 @@ def signup():
             db.session.commit()
             flash(f"Account Successfully created!")
             session["time_stamp"] = datetime.now().strftime('%a %d %b %Y, %I:%M%p')
-            emailing.sendMail(name, os.environ("EMAIL_HOST_USER"), "signed up admin email.txt")
+            emailing.sendMail(name, os.environ.get("EMAIL_HOST_USER"), "signed up admin email.txt")
             
         elif Name_User:
             flash("User with that name already exists")
