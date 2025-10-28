@@ -1,6 +1,6 @@
 import os
 from dotenv import load_dotenv
-# THIS IS A FORCED COMMIT TO TRIGGER DEPLOYMENT FIX
+# FORCING REBUILD: Fix database URI
 from flask import Flask, redirect, url_for, render_template, request, session, flash
 from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import timedelta, datetime
