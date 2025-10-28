@@ -4,3 +4,4 @@ gunicorn
 python-dotenv
 werkzeug
 pymysql  
+requests
