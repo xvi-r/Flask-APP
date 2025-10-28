@@ -1,5 +1,5 @@
 import os
-from dotenv import load_dotenv
+
 # FORCING REBUILD: Fix database URI
 from flask import Flask, redirect, url_for, render_template, request, session, flash
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -9,7 +9,6 @@ import twitchGet
 import emailing
 import pymysql
 
-load_dotenv()
 
 adminUsers = os.environ.get("ADMIN_USERS")
 bannedIPs = []
