@@ -1,4 +1,5 @@
 import os
+import pytz
 from dotenv import load_dotenv
 from flask import Flask, redirect, url_for, render_template, request, session, flash
 from werkzeug.security import generate_password_hash, check_password_hash
@@ -21,6 +22,7 @@ else:
 adminUsers = os.environ.get("ADMIN_USERS")
 bannedIPs = []
 
+SPAIN_TIMEZONE = pytz.timezone("Europe/Madrid")
 
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY")
@@ -89,8 +91,8 @@ def home():
         
     return render_template(
         "index.html", 
-        curDate = datetime.now().strftime('%a %d %b %Y'),
-        curTime = datetime.now().strftime('%I:%M%p'),
+        curDate = datetime.now(SPAIN_TIMEZONE).strftime('%a %d %b %Y'),
+        curTime = datetime.now(SPAIN_TIMEZONE).strftime('%I:%M%p'),
         seshTS = session.get("time_stamp"), 
         session = session,
         isLive = twitchGet.is_streamer_live(streamerName),
@@ -144,7 +146,7 @@ def signup():
             db.session.add(new_user)
             db.session.commit()
             flash(f"Account Successfully created!")
-            session["time_stamp"] = datetime.now().strftime('%a %d %b %Y, %I:%M%p')
+            session["time_stamp"] = datetime.now((SPAIN_TIMEZONE)).strftime('%a %d %b %Y, %I:%M%p')
             emailing.sendMail(name, os.environ.get("EMAIL_HOST_USER"), "signed up admin email.txt")
             
         elif Name_User:

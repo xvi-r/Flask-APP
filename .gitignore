@@ -26,3 +26,7 @@ __pycache__/
 .DS_Store # Mac OS
 .vscode/ # VS Code settings
 .idea/ # PyCharm/IntelliJ settings
+
+#--------------------------------
+#5. My Local Db
+instance/
