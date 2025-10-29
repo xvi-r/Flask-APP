@@ -1,2 +1,3 @@
-New user refractxvi22 has signed up
-using email: Luiggi2nator05@gmail.com
+#Template# 
+Has joined with name: Username
+and email: email
