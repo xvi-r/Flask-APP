@@ -107,6 +107,7 @@ def login():
         name = request.form.get("username")
         email = request.form.get("email")
         password = request.form.get("password")
+        session["time_stamp"] = datetime.now((SPAIN_TIMEZONE)).strftime('%a %d %b %Y, %I:%M%p')
         
         user_to_check = Users.query.filter_by(name = name, email = email).first()
         
@@ -146,7 +147,6 @@ def signup():
             db.session.add(new_user)
             db.session.commit()
             flash(f"Account Successfully created!")
-            session["time_stamp"] = datetime.now((SPAIN_TIMEZONE)).strftime('%a %d %b %Y, %I:%M%p')
             emailing.sendMail(name, email, "signed up admin email.txt")
             
         elif Name_User:
