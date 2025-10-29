@@ -1,4 +1,4 @@
-#  Flask Production Deployment & Hybrid Database Model
+# 🐍 Flask Production Deployment & Hybrid Database Model
 
 **Project Goal:** To build a robust, production-ready Flask application while mastering the transition from local development to a secure, professional cloud environment.
 
@@ -12,13 +12,23 @@ The most significant achievement of this project is the implementation of a **se
     * **Local Development (`FLASK_ENV=development`):** Connects to a local **SQLite** database and loads all secrets from the local `.env` file.
     * **Production (DigitalOcean App Platform):** Connects to a **Managed MySQL Cluster** using secure, injected environment variables.
 
-* **Security:** All sensitive data (database URI, SECRET\_KEY, API keys) are stored outside the codebase via **Encrypted Environment Variables** on DigitalOcean. Passwords are stored in the data base as a **scrypt hash** using `werkzeug.security`
-
-* **Stack:** Python, Flask, Flask-SQLAlchemy, MySQL, DigitalOcean App Platform.
+* **Security:** All sensitive data (database URI, SECRET\_KEY, API keys) are stored outside the codebase via **Encrypted Environment Variables** on DigitalOcean. Passwords are secured using **scrypt hashing** via `werkzeug.security`.
 
 ***
 
-###  Get Started Locally
+###  Core Functionality & Features
+
+The live application demonstrates standard and external service integrations:
+
+* **Robust Authentication:** Features full user sign-up and login capabilities with detailed feedback:
+    * Validation checks if a **username or email is already taken** during registration.
+    * Login validation handles scenarios where **no user exists** or the **password is incorrect**.
+* **Twitch API Integration:** Connects to the Twitch API to **check if a specified streamer is live**.
+* **Email Notifications:** Sends an email notification to the administrator upon new user sign-up.
+
+***
+
+### ⚙️ Get Started Locally
 
 To run this application locally and begin development:
 
