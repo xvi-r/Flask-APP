@@ -16,7 +16,7 @@ def get_twitch_token():
     return data.get("access_token")
 
 
-def is_streamer_live(username):
+def is_streamer_live(username, db = True):
     if username == "":
         return
     token = get_twitch_token()
@@ -32,7 +32,10 @@ def is_streamer_live(username):
     data = response.json()
     if data.get("data"):
         stream = data["data"][0]
-        return f"🟢LIVE<br> Title: {stream["title"]}<br> Viewers: {stream["viewer_count"]}<br> Game: {stream["game_name"]}"
+        if db == True:
+            return stream #If we are calling the function for our data base we return the dictionary to initialize the entity easier
+        else:
+            return f"🟢LIVE<br> Title: {stream["title"]}<br> Viewers: {stream["viewer_count"]}<br> Game: {stream["game_name"]}"
         
     else:
         return "🔴 NOT LIVE"
