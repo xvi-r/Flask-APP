@@ -1,16 +1,13 @@
-# setup_flask.ps1
-# Activate virtual environment
-. .\.venv\Scripts\Activate.ps1
+.\.venv\Scripts\activate
 
-# Set Flask environment variable
-$env:FLASK_ENV = "development"
+flask shell
 
-# Run Python to create the database
-python - <<END
-from app import db, app
+from app import db;
 with app.app_context():
-    db.create_all()
-print("✅ Database created successfully.")
-END
+     db.create_all()
 
-Write-Host "Flask environment set to development."
+exit()
+
+$env:FLASK_ENV="development"
+
+flask run

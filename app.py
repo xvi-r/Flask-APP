@@ -66,13 +66,14 @@ class Streamers(db.Model):
     id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String(100), nullable = False)
     twitch_id = db.Column(db.String(50), unique=True, nullable=True)
-    is_live = db.Column(db.Boolean, default=False)
+    date_added = db.Column(db.DateTime, nullable=True, default = datetime.utcnow)
+    channel_link = db.Column(db.String(100), unique=True, nullable=True)
 
     def __repr__(self):
         return f"<Streamer {self.username}>"
     
     def __repr__(self):
-        return f"ID: {self.id} Streamer: {self.username}, TwitchID: {self.twitch_id} wasLive: {self.is_live}"
+        return f"ID: {self.id} Streamer: {self.username}, TwitchID: {self.twitch_id}, Date Added: {self.date_added}, Channel Link: {self.channel_link}"
     
     
 # For getting real ip
@@ -115,7 +116,7 @@ def home():
                 else:
                     live = True
                 
-                newStreamer = Streamers(username = streamerName, twitch_id = streamerData["id"], is_live = live)
+                newStreamer = Streamers(username = streamerName, twitch_id = streamerData["id"], channel_link = f"https://twitch.tv/{streamerName}")
                 db.session.add(newStreamer)
                 db.session.commit()
                 flash(f"Added {streamerData["user_name"]} To The Database")
