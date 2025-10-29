@@ -32,7 +32,7 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db = SQLAlchemy(app)
 
-
+#USERS TABLE
 class Users(db.Model):
     _id = db.Column(db.Integer, primary_key = True)
     name = db.Column(db.String(100), nullable = False)
@@ -59,8 +59,22 @@ class Users(db.Model):
         self._password_hash = generate_password_hash(plain_text_password)
         
     def __repr__(self):
-        return f"User: ID:{self.id}, Name: {self.name} Email:{self.email}"
+        return f"User: ID:{self._id}, Name: {self.name} Email:{self.email}"
 
+#STREAMERS TABLE
+class Streamers(db.Model):
+    id = db.Column(db.Integer, primary_key = True)
+    username = db.Column(db.String(100), nullable = False)
+    twitch_id = db.Column(db.String(50), unique=True, nullable=True)
+    is_live = db.Column(db.Boolean, default=False)
+
+    def __repr__(self):
+        return f"<Streamer {self.username}>"
+    
+    def __repr__(self):
+        return f"ID: {self.id} Streamer: {self.username}, TwitchID: {self.twitch_id} wasLive: {self.is_live}"
+    
+    
 # For getting real ip
 def get_client_ip():
     if request.headers.get("X-Forwarded-For"):
@@ -87,6 +101,26 @@ def home():
             return redirect(url_for("home"))
         
         streamerName = request.form.get("streamerName")
+        #NOTE when you get back current code breaks when string NONE is returned if streamer is not live, add check to see if is_streamer_live() returned a dict or None
+        streamer_to_check = Streamers.query.filter_by(username= streamerName).first()
+        if not streamer_to_check:
+            streamerData = twitchGet.is_streamer_live(streamerName, db=True)
+        
+            if streamerData != "🔴 NOT LIVE":
+        
+                print(streamerData["id"])
+                
+                if not streamerData:
+                    live = False
+                else:
+                    live = True
+                
+                newStreamer = Streamers(username = streamerName, twitch_id = streamerData["id"], is_live = live)
+                db.session.add(newStreamer)
+                db.session.commit()
+                flash(f"Added {streamerData["user_name"]} To The Database")
+            else:
+                flash("Only online users can be added to the database")
     
         
     return render_template(
@@ -95,7 +129,7 @@ def home():
         curTime = datetime.now(SPAIN_TIMEZONE).strftime('%I:%M%p'),
         seshTS = session.get("time_stamp"), 
         session = session,
-        isLive = twitchGet.is_streamer_live(streamerName),
+        isLive = twitchGet.is_streamer_live(streamerName, db=False),
         streamerName = streamerName
     )
     
