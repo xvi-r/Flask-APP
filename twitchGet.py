@@ -15,7 +15,7 @@ def get_twitch_token():
     data = response.json()
     return data.get("access_token")
 
-
+#Get Current Streamer's Stream info
 def is_streamer_live(username, db = True):
     if username == "":
         return
@@ -39,4 +39,23 @@ def is_streamer_live(username, db = True):
         
     else:
         return "🔴 NOT LIVE"
+
+
+#Get Streamer Channel Info
+def getStreamerData(username): 
+    if username == "":
+        return
+    token = get_twitch_token()
+    headers = {
+        "Client-ID": TWITCH_CLIENT_ID,
+        "Authorization": f"Bearer {token}"
+    }
+    response = requests.get(
+        f"https://api.twitch.tv/helix/users?login={username}",
+        headers=headers,
+        params={"user_login": username}
+    )
+    data = response.json()
+    
+    return data
 
