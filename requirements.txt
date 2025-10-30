@@ -6,3 +6,4 @@ werkzeug
 requests
 mysqlclient 
 pytz #FOR SPAIN TIMEZONE
+xmltodict
