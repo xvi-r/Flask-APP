@@ -7,3 +7,4 @@ requests
 mysqlclient 
 pytz #FOR SPAIN TIMEZONE
 xmltodict
+json

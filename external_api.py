@@ -2,10 +2,14 @@ import requests
 import os
 from urllib.parse import urlparse, parse_qs, urlunparse, urlencode
 import json
-import xmltodict
 
+#Twitch
 TWITCH_CLIENT_ID = os.environ.get("TWITCH_CLIENT_ID")
 TWITCH_CLIENT_SECRET = os.environ.get("TWITCH_CLIENT_SECRET")
+
+#Titanfall
+SECURITY_TOKEN = os.environ.get("SECURITY_TOKEN")
+NUCLEUS_TOKEN = os.environ.get("NUCLEUS_TOKEN")
 
 def get_twitch_token():
     url = "https://id.twitch.tv/oauth2/token"
@@ -84,14 +88,14 @@ def getTitanfallNetwork(id):
         "User-Agent": "Respawn HTTPS/1.0",
         "Accept": "*/*",
         "X-Respawn-Handle": "1507350",
-        "X-Respawn-Key": "LABj38NWSTxHUhdYaP62ZU6HtutCas3L"
+        "X-Respawn-Key": "LABj38NWSTxHUhdYaP62ZU6HtutCas3L" 
     }
 
     data = {
         "env": "production",
         "3pToken": "PC_PLACEHOLDER_3P_TOKEN",
-        "NucleusToken": "*0a1iWNjXVpg34WKx8NW2wQkjzBORVtsPlQrV28spdvsjPwvIID9zhKtb00w6TRjewISMBjdFJfi5H3Y1Bq8PPfHavyGMvW9sRGF-uY-uAy4bWB3niWF_KLhT4lv4l9DaGxhR8KucCw-IS9zZb0ZOwFRfRAZkxuIHl0z166pPW0oNeRkw63RMjpZkoc-gpJtpPLoInqKVs8X_fQBPr0qFFj7V1wddMcwUOiZGcLpNxBvC-2sXqnd6LX4oY_xgklrZuEGSX-MeA6C7z_4wKETwXmL5Gu80bFXenXypUtAYYH260uE8Q2rVeeArjZFeM0g0A5FPQeBbB8MT9r1dY1JuIhC93ROXxey_qaGgA0f28t9UsdSC9azI9B8Fo0jxvo1svZXwLRc8Zi8uDbvCRwrAudesiWN8uRbBNtt9hnguW19B8QAJOyFPqT10aIBfGiheuKOhewntsFVliOFN9Qn7uvtoG3tqcWsv63A4fmRfbO1aAeWaEY6h3YZ6A0IUti-bKTca9CHlhM0qh8vHoqwHAl7K3nObwVW8Z6SaRSoW9ur79haUMypzatwdf2nUxWVS9VvoNRY6yTPBmRfCGefPfC4Q8Aa5aYNhGVr1ERgwyQRkz_mzd-HwL38dzQABiVh-3",
-        "securityToken": "HZSKrcn1uxDYjSlhQV58v2Bbn4sdeB8EWhqpgSoZfuqRjF6n9I7o6pgymJxrF1Ag8u17DdB5LaMTYr86Pu5GLuj6lfVp+hNSvPDYvHuFaI7ALTE1nMHIhe9hmQL91542"
+        "NucleusToken": NUCLEUS_TOKEN,
+        "securityToken": SECURITY_TOKEN
     }
 
   
