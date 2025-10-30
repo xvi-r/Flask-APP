@@ -1,5 +1,8 @@
 import requests
 import os
+from urllib.parse import urlparse, parse_qs, urlunparse, urlencode
+import json
+import xmltodict
 
 TWITCH_CLIENT_ID = os.environ.get("TWITCH_CLIENT_ID")
 TWITCH_CLIENT_SECRET = os.environ.get("TWITCH_CLIENT_SECRET")
@@ -58,4 +61,50 @@ def getStreamerData(username):
     data = response.json()
     
     return data
+
+
+def getTitanfallNetwork(id):
+
+    url = "https://R2-pc.stryder.respawn.com/communities.php"
+
+    # Query string parameters
+    params = {
+        "qt": "communities-getsettings",
+        "hardware": "PC",
+        "uid": "1009397012783",
+        "language": "english",
+        "getsettings": "1",
+        "id": id,
+        "cprot": "7",
+        "timezoneOffset": "1"
+    }
+
+    headers = {
+        "Host": "R2-pc.stryder.respawn.com",
+        "User-Agent": "Respawn HTTPS/1.0",
+        "Accept": "*/*",
+        "X-Respawn-Handle": "1507350",
+        "X-Respawn-Key": "LABj38NWSTxHUhdYaP62ZU6HtutCas3L"
+    }
+
+    data = {
+        "env": "production",
+        "3pToken": "PC_PLACEHOLDER_3P_TOKEN",
+        "NucleusToken": "***REMOVED***",
+        "securityToken": "***REMOVED***"
+    }
+
+  
+    response = requests.post(url, headers=headers, params=params, data=data, verify=False)
+    xml_text = response.text.strip()
+
+
+    json_string = f"{{{xml_text}}}" #Convert to actual json
+    data = json.loads(json_string)
+    
+    if not data:
+        return None #This happens if the community is unlisted
+    
+    return data["communitySettings"] #Return as dict
+
 
