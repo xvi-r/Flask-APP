@@ -2,10 +2,14 @@ import requests
 import os
 from urllib.parse import urlparse, parse_qs, urlunparse, urlencode
 import json
-import xmltodict
 
+#Twitch
 TWITCH_CLIENT_ID = os.environ.get("TWITCH_CLIENT_ID")
 TWITCH_CLIENT_SECRET = os.environ.get("TWITCH_CLIENT_SECRET")
+
+#Titanfall
+SECURITY_TOKEN = os.environ.get("SECURITY_TOKEN")
+NUCLEUS_TOKEN = os.environ.get("NUCLEUS_TOKEN")
 
 def get_twitch_token():
     url = "https://id.twitch.tv/oauth2/token"
@@ -84,14 +88,14 @@ def getTitanfallNetwork(id):
         "User-Agent": "Respawn HTTPS/1.0",
         "Accept": "*/*",
         "X-Respawn-Handle": "1507350",
-        "X-Respawn-Key": "LABj38NWSTxHUhdYaP62ZU6HtutCas3L"
+        "X-Respawn-Key": "LABj38NWSTxHUhdYaP62ZU6HtutCas3L" 
     }
 
     data = {
         "env": "production",
         "3pToken": "PC_PLACEHOLDER_3P_TOKEN",
-        "NucleusToken": "***REMOVED***",
-        "securityToken": "***REMOVED***"
+        "NucleusToken": NUCLEUS_TOKEN,
+        "securityToken": SECURITY_TOKEN
     }
 
   

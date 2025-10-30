@@ -1,5 +1,6 @@
 import external_api
 from models import TF2_Networks,db
+from app import app, db
 
 #+++++++++++++++++++++++++++++++++++++++++++++++++
 #TO BE EXECUTED ONCE THROUGH DIGITAL OCEAN CONSOLE
