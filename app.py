@@ -2,11 +2,10 @@ import os
 import pytz
 from dotenv import load_dotenv
 from flask import Flask, redirect, url_for, render_template, request, session, flash
-from werkzeug.security import generate_password_hash, check_password_hash
 from datetime import timedelta, datetime
-from flask_sqlalchemy import SQLAlchemy
-import twitchGet
+import external_api
 import emailing
+from models import db, Users, Streamers, TF2_Networks
 
 if os.environ.get("FLASK_ENV") == "development":
     from dotenv import load_dotenv
@@ -30,50 +29,9 @@ app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=60)
 app.config["SQLALCHEMY_DATABASE_URI"] = DB_URI
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
-db = SQLAlchemy(app)
+db.init_app(app)
 
-#USERS TABLE
-class Users(db.Model):
-    _id = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.String(100), nullable = False)
-    email = db.Column(db.String(100), nullable = False)
-    ip = db.Column(db.String(100), nullable = False)
-    password_hash = db.Column(db.String(255), nullable = False) #NOTE Hashes tend to be long better to use 255 chars
-    
-    def __init__(self, name, email, ip, password):
-        self.name = name
-        self.email = email
-        self.ip = ip
-        self.password_hash = generate_password_hash(password)
 
-    @property
-    def password(self):
-        raise AttributeError("Password is not a readable attribute")
-    
-    def verify_password(self, password):
-        return check_password_hash(self.password_hash, password)
-    
-    @password.setter
-    def password(self, plain_text_password):
-        print("Hashing and storing the password securely...")
-        self._password_hash = generate_password_hash(plain_text_password)
-        
-    def __repr__(self):
-        return f"User: ID:{self._id}, Name: {self.name} Email:{self.email}"
-
-#STREAMERS TABLE
-class Streamers(db.Model):
-    id = db.Column(db.Integer, primary_key = True)
-    username = db.Column(db.String(100), nullable = False)
-    twitch_id = db.Column(db.String(50), unique=True, nullable=True)
-    date_added = db.Column(db.DateTime, nullable=True, default = datetime.utcnow)
-    channel_link = db.Column(db.String(100), unique=True, nullable=True)
-
-    def __repr__(self):
-        return f"<Streamer {self.username}>"
-    
-    def __repr__(self):
-        return f"ID: {self.id} Streamer: {self.username}, TwitchID: {self.twitch_id}, Date Added: {self.date_added}, Channel Link: {self.channel_link}"
     
     
 # For getting real ip
@@ -96,6 +54,7 @@ def block_banned_ips():
 @app.route("/", methods=["POST","GET"])
 def home():
     streamerName = ""
+    
     if request.method == "POST":
         if "username" not in session:
             flash("You need to be logged in to target")
@@ -105,7 +64,7 @@ def home():
         #NOTE when you get back current code breaks when string NONE is returned if streamer is not live, add check to see if is_streamer_live() returned a dict or None
         streamer_to_check = Streamers.query.filter_by(username= streamerName).first()
         if not streamer_to_check:
-            streamerData = twitchGet.is_streamer_live(streamerName, db=True)
+            streamerData = external_api.is_streamer_live(streamerName, db=True)
         
             if streamerData != "🔴 NOT LIVE":
         
@@ -130,7 +89,7 @@ def home():
         curTime = datetime.now(SPAIN_TIMEZONE).strftime('%I:%M%p'),
         seshTS = session.get("time_stamp"), 
         session = session,
-        isLive = twitchGet.is_streamer_live(streamerName, db=False),
+        isLive = external_api.is_streamer_live(streamerName, db=False),
         streamerName = streamerName
     )
     
