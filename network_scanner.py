@@ -36,20 +36,6 @@ def scan_all_networks(startID, endID):
             
             db.session.add(newNetwork)
             db.session.commit()
-            print(f"should be added {tf_network.get('name')}")
+            print(f"{id} should be added {tf_network.get('name')}")
             print(f"should be added {tf_network.get('clantag')}")
-<<<<<<< HEAD
 
-#  utcHappyHourStart = db.Column(db.Integer, nullable=True)
-#  happyHourStart = db.Column(db.Integer, nullable=True)
-#   creatorUID = db.Column(db.Integer, nullable=True)
-#   creatorName = db.Column(db.String(100), nullable=True)
-#   kills  = db.Column(db.Integer, nullable=True)
-#   wins = db.Column(db.Integer, nullable=True)
-#  xp = db.Column(db.Integer, nullable=True)
-#   memberCount = db.Column(db.Integer, nullable=True)
-
-with app.app_context():
-    scan_all_networks(1200, 2000)
-=======
->>>>>>> f54b49ce1a4d232bf2c9124abbd68d166bb8650b
