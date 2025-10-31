@@ -63,8 +63,6 @@ class TF2_Networks(db.Model):
     languages = db.Column(db.String(100), nullable=True)
     utcHappyHourStart = db.Column(db.Integer, nullable=True)
     happyHourStart = db.Column(db.Integer, nullable=True)
-    
-    # NEW COLUMNS ADDED IN THE MERGE
     creatorUID = db.Column(db.Integer, nullable=True)
     creatorName = db.Column(db.String(100), nullable=True)
     kills = db.Column(db.Integer, nullable=True)
