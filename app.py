@@ -218,3 +218,14 @@ def emailMe():
         flash("You must be logged in")
     return redirect(url_for("home"))
 
+@app.route("/tfnetworks", methods = ["POST", "GET"])
+def tfnetworks():
+    if request.method == "POST":
+        networkID = request.form.get("networkID")
+        network = TF2_Networks.query.filter_by(id = networkID).first()
+        if network:
+            return render_template("tfnetworks.html", network = network)
+        flash(f"{networkID} is a private network")
+        
+    return render_template("tfnetworks.html")
+

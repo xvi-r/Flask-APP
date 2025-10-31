@@ -49,6 +49,8 @@ class Streamers(db.Model):
     
 # --- Titanfall Networks Table ---
 class TF2_Networks(db.Model):
+    __tablename__ = "TF2_Networks" #Avoid auto table name creation
+     
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=True)
     clantag = db.Column(db.String(100), nullable=True)
@@ -60,10 +62,19 @@ class TF2_Networks(db.Model):
     languages = db.Column(db.String(100), nullable=True)
     utcHappyHourStart = db.Column(db.Integer, nullable=True)
     happyHourStart = db.Column(db.Integer, nullable=True)
+    creatorUID = db.Column(db.Integer, nullable=True)
+    creatorName = db.Column(db.String(100), nullable=True)
+    kills  = db.Column(db.Integer, nullable=True)
+    wins = db.Column(db.Integer, nullable=True)
+    xp = db.Column(db.Integer, nullable=True)
+    memberCount = db.Column(db.Integer, nullable=True)
 
     def __repr__(self):
-        return (f"TF2_Networks(id={self.id},\n name='{self.name}',\n clantag='{self.clantag}',\n motd='{self.motd}',\n"
-                f"category='{self.category}',\n type='{self.type}',\n visibility='{self.visibility}',\n "
-                f"regions='{self.regions}',\n languages='{self.languages}',\n "
-                f"utcHappyHourStart={self.utcHappyHourStart},\n happyHourStart={self.happyHourStart})")
+        return (
+            f"TF2_Networks(id={self.id}, name={repr(self.name)}, clantag={repr(self.clantag)}, motd={repr(self.motd)}, "
+            f"category={repr(self.category)}, type={repr(self.type)}, visibility={repr(self.visibility)}, "
+            f"regions={repr(self.regions)}, languages={repr(self.languages)}, utcHappyHourStart={self.utcHappyHourStart}, "
+            f"happyHourStart={self.happyHourStart}, creatorUID={self.creatorUID}, creatorName={repr(self.creatorName)}, "
+            f"kills={self.kills}, wins={self.wins}, xp={self.xp}, memberCount={self.memberCount})"
+        )
 

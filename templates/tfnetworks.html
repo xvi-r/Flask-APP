@@ -1,0 +1,55 @@
+    {% extends "base.html" %}
+    {% block title %}Networks{% endblock %}
+
+    {% block head%}
+    {% endblock %}
+
+    {% block body%}
+    {% with messages = get_flashed_messages() %}
+        {% for message in messages %}
+            <div class="alert alert-success" role="alert">
+                {{message}}
+            </div>
+        {% endfor %}
+    {% endwith %}
+    
+    <style>
+        body {
+            background-color: darkseagreen;
+        }
+    </style>
+
+    <body class="d-flex flex-column justify-content-center align-items-center vh-20 text-center"> 
+    
+    <h1>TITANFALL2 NETWORKS</h1><hr>
+
+    {% if network %}
+        <table border="1" style="width:50%; text-align:left;">
+            <th>ID</th>
+            <th>Name</th>
+            <th>clantag</th>
+            <th>Motd</th>
+            <th>Category</th>
+
+                <tr>    
+                    <td>{{network.id}}</td>
+                    <td>{{network.name}}</td>
+                    <td>{{network.clantag}}</td>
+                    <td>{{network.motd}}</td>
+                    <td>{{network.category}}</td>
+                </tr>                                                           
+    {% endif %}
+        
+    </table>   
+
+    <form action="#" method="POST">
+        <label for="networkID">Network ID: </label>
+        <input type="number" id="networkID" name="networkID">
+
+        <input type="submit" value="submit">
+    </form>
+
+
+    
+
+    {% endblock %}
