@@ -88,7 +88,7 @@ def getTitanfallNetwork(id):
         "User-Agent": "Respawn HTTPS/1.0",
         "Accept": "*/*",
         "X-Respawn-Handle": "1507350",
-        "X-Respawn-Key": "LABj38NWSTxHUhdYaP62ZU6HtutCas3L" 
+        "X-Respawn-Key": "LABj38NWSTxHUhdYaP62ZU6HtutCas3L" #This isn't actually smthng worth putting in env 
     }
 
     data = {
@@ -110,5 +110,3 @@ def getTitanfallNetwork(id):
         return None #This happens if the community is unlisted
     
     return data["communitySettings"] #Return as dict
-
-
