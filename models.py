@@ -49,8 +49,9 @@ class Streamers(db.Model):
     
 # --- Titanfall Networks Table ---
 class TF2_Networks(db.Model):
-    __tablename__ = "TF2_Networks" #Avoid auto table name creation
-     
+    # RETAIN: The explicit table name to avoid auto-generation issues
+    __tablename__ = "TF2_Networks" 
+    
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=True)
     clantag = db.Column(db.String(100), nullable=True)
@@ -62,13 +63,16 @@ class TF2_Networks(db.Model):
     languages = db.Column(db.String(100), nullable=True)
     utcHappyHourStart = db.Column(db.Integer, nullable=True)
     happyHourStart = db.Column(db.Integer, nullable=True)
+    
+    # NEW COLUMNS ADDED IN THE MERGE
     creatorUID = db.Column(db.Integer, nullable=True)
     creatorName = db.Column(db.String(100), nullable=True)
-    kills  = db.Column(db.Integer, nullable=True)
+    kills = db.Column(db.Integer, nullable=True)
     wins = db.Column(db.Integer, nullable=True)
     xp = db.Column(db.Integer, nullable=True)
     memberCount = db.Column(db.Integer, nullable=True)
 
+    # RETAIN: The comprehensive __repr__ method
     def __repr__(self):
         return (
             f"TF2_Networks(id={self.id}, name={repr(self.name)}, clantag={repr(self.clantag)}, motd={repr(self.motd)}, "
