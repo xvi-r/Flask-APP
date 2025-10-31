@@ -63,7 +63,7 @@ class TF2_Networks(db.Model):
     languages = db.Column(db.String(100), nullable=True)
     utcHappyHourStart = db.Column(db.Integer, nullable=True)
     happyHourStart = db.Column(db.Integer, nullable=True)
-    creatorUID = db.Column(db.Integer, nullable=True)
+    creatorUID = db.Column(db.BigInteger, nullable=True) #Completely forgot UIDS tend to be huger numbers e.g 4284285919441942582
     creatorName = db.Column(db.String(100), nullable=True)
     kills = db.Column(db.Integer, nullable=True)
     wins = db.Column(db.Integer, nullable=True)
