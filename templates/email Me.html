@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block title%}Sign In{% endblock %}
+
+
+{% block body%}
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6"> 
+            {% with messages = get_flashed_messages() %} 
+            {% for message in messages %} 
+            <div class="alert alert-success text-center mt-3" role="alert">
+                {{message}}
+            </div>
+            {% endfor %} 
+            {% endwith %} 
+        </div>
+    </div>
+</div>
+
+    <!-- Background video --> 
+<video id="bg-video" autoplay muted loop playsinline preload="auto"> 
+    <source src="https://backgroundvids.fra1.cdn.digitaloceanspaces.com/videoplayback%20(1).webm" type="video/webm"> 
+    Your browser does not support the video tag. 
+</video> 
+    
+
+<section class="vh-100" >
+  <div class="container py-5 h-100" >
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5" style="filter: drop-shadow(0 0 0.5rem rgb(98, 123, 146));">
+        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+
+            
+
+          <form style="max-width: 400px; margin:auto;"  action="/emailMe" method="post">
+
+            <h3 class="mb-5">Send Me an Email!</h3>
+
+            <div data-mdb-input-init class="form-outline mb-4">
+              <textarea rows="10" id="userMsg" name="userMsg" class="form-control form-control-lg text-white border-secondary bg-dark" placeholder="Your message" style="filter: drop-shadow(0 0 0.5rem rgb(48, 48, 48));" required></textarea>
+            </div>
+
+            
+            <button data-mdb-button-init data-mdb-ripple-init class="btn btn-danger btn-lg btn-block" type="submit" style="filter: drop-shadow(0 0 0.75rem rgb(54, 0, 0));">Send</button>
+
+          </form>
+
+            <p class="mt-4">📧 Your Message Will Be Sent Directly To My Email</p>
+            <hr class="my-4">
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+{% endblock %}

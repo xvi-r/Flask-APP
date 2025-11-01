@@ -206,12 +206,18 @@ def admin():
         return redirect(url_for("home"))
 
 
-@app.route("/emailMe")
+@app.route("/emailMe", methods=["POST","GET"])
 def emailMe():
+    
+    if request.method == "POST":
+        userMsg = request.form.get("userMsg")
+        emailing.sendMail(session["username"], session["email"], "email me.txt", userMsg)
+        flash("Email sent!")
+        return render_template("email Me.html")
+    
     if "username" in session:
-        emailing.sendMail(session["username"],session["email"], mailType="defaultEmail.txt")
-        flash(f"Email sent to {session["email"]}")
-        print(f"{session["username"]} requested mail")
+        return render_template("email Me.html")
+    
     else:
         flash("You must be logged in")
     return redirect(url_for("home"))
