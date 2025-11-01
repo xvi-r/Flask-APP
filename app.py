@@ -194,8 +194,9 @@ def admin():
         db.session.commit()
         
         flash("USER DELETED")
-        
+    
     if "username" in session:
+        #TODO this logic will be replaced via a database query instead
         if session.get("username") in adminUsers:
             
             flash(f"Access Granted {session["username"]} is admin")
