@@ -16,8 +16,8 @@ if os.environ.get("FLASK_ENV") == "development":
 else:
     # Use the MySQL URI injected by DigitalOcean (read from DO settings)
     DB_URI = os.environ.get("DATABASE_URI")
-
-
+    
+    
 adminUsers = os.environ.get("ADMIN_USERS")
 bannedIPs = []
 
@@ -50,7 +50,7 @@ def block_banned_ips():
     
     if get_client_ip() in bannedIPs:
         return render_template("banned.html")
-    
+
 @app.route("/", methods=["POST","GET"])
 def home():
     streamerName = ""

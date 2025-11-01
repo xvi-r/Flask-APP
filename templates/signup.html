@@ -4,34 +4,60 @@
 
 {% block body%}
 
-{% with messages = get_flashed_messages() %} 
-{% for message in messages %} 
-<div class="alert alert-danger" role="alert">
-  {{message}}
-</div>
-{% endfor %} 
-{% endwith %} 
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-md-6"> 
+            {% with messages = get_flashed_messages() %} 
+            {% for message in messages %} 
+            <div class="alert alert-danger text-center mt-3" role="alert">
+                {{message}}
+            </div>
+            {% endfor %} 
+            {% endwith %} 
+        </div>
+    </div>
+</div> 
 
   
 <video id="bg-video" autoplay muted loop playsinline preload="auto"> 
-    <source src="https://backgroundvids.fra1.cdn.digitaloceanspaces.com/videoplayback%20(1).webm" type="video/mp4"> 
+    <source src="https://backgroundvids.fra1.cdn.digitaloceanspaces.com/4K%20Space%20Starfield%20Background.mp4" type="video/mp4"> 
     Your browser does not support the video tag. 
 </video> 
-  <div class="container">
-    <div class="text-center mt-5" style="max-width: 300px; margin:auto;">
-      
-        <form style="max-width: 400px; margin:auto;"  action="/login" method="post">
-            <h1 style ="filter: drop-shadow(0px 2px 1.2px #3b3b3b); color:aliceblue">Sign Up</h1>
-            <input  type="text" class="form-control mt-4" id="username" name="username" placeholder="Username" required autofocus>
-            <input type="email" class="form-control mt-2" id="email" name="email" placeholder="Email" required>
-            <input type="password" class="form-control mt-2" id="password" name="password" placeholder="Password" required>
-          
-            <div class="mt-3">
-              <button class="btn btn-success btn-lg btn-block">Sign Up</button>
-           
-        </form>
+
+  <section class="vh-100" >
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5" style="filter: drop-shadow(0 0 0.5rem rgb(135, 113, 146));">
+        <div class="card bg-dark text-white" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center">
+            
+            <form style="max-width: 400px; margin:auto;"  action="/signup" method="post">
+
+            <h3 class="mb-5">Sign Up</h3>
+
+            <div data-mdb-input-init class="form-outline mb-4">
+              <input type="text" id="username" name="username" class="form-control form-control-lg text-white border-secondary bg-dark" placeholder="Username" style="filter: drop-shadow(0 0 0.5rem rgb(48, 48, 48));" />
+            </div>
+
+            <div data-mdb-input-init class="form-outline mb-4">
+              <input type="email" id="email" name="email" class="form-control form-control-lg text-white border-secondary bg-dark" placeholder="Email" style="filter: drop-shadow(0 0 0.5rem rgb(48, 48, 48));" />
+            </div>
+
+            <div data-mdb-input-init class="form-outline mb-4">
+              <input type="password" id="password" name="password" class="form-control form-control-lg text-white border-secondary bg-dark" placeholder="Password" style="filter: drop-shadow(0 0 0.5rem rgb(48, 48, 48));" />
+            </div>
+
+            <button data-mdb-button-init data-mdb-ripple-init class="btn btn-success btn-lg btn-block" type="submit" style="filter: drop-shadow(0 0 0.75rem rgb(0, 54, 27));">Sign Up</button>
+
+            </form>
+            <p class="mt-4">🔒 All passwords are safely encrypted</p>
+            <hr class="my-4">
+
+          </div>
         </div>
+      </div>
     </div>
+  </div>
 
 
 {% endblock %}
