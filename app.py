@@ -31,9 +31,6 @@ app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db.init_app(app)
 
-
-    
-    
 # For getting real ip
 def get_client_ip():
     if request.headers.get("X-Forwarded-For"):
