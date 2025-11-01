@@ -1,11 +1,6 @@
 {% extends "base.html" %}
 {% block title%}Sign Up{% endblock %}
 
-{% block head %}
-    <style>
-    body {background: linear-gradient(90deg,rgba(0, 170, 255, 1) 0%, rgba(145, 0, 0, 1) 100%);}
-    </style>
-{% endblock %}
 
 {% block body%}
 
@@ -17,16 +12,26 @@
 {% endfor %} 
 {% endwith %} 
 
-    <h1>SignUp</h1>
-    <form action="/signup" method="post">
-        <label for="username" >Username: </label><br>
-        <input type="text" id="username" name="username" maxlength="20" required><br>
-        <label for="email">Email: </label><br>
-        <input type="email" id="email" name="email" required><br>
-        <label for="password">Password: </label><br>
-        <input type="password" id="password" name="password" required maxlength="20" minlength="8"><br>
-        <input type="submit" value="Submit">
-    </form>
+  
+<video id="bg-video" autoplay muted loop playsinline preload="auto"> 
+    <source src="https://backgroundvids.fra1.cdn.digitaloceanspaces.com/videoplayback%20(1).webm" type="video/mp4"> 
+    Your browser does not support the video tag. 
+</video> 
+  <div class="container">
+    <div class="text-center mt-5" style="max-width: 300px; margin:auto;">
+      
+        <form style="max-width: 400px; margin:auto;"  action="/login" method="post">
+            <h1 style ="filter: drop-shadow(0px 2px 1.2px #3b3b3b); color:aliceblue">Sign Up</h1>
+            <input  type="text" class="form-control mt-4" id="username" name="username" placeholder="Username" required autofocus>
+            <input type="email" class="form-control mt-2" id="email" name="email" placeholder="Email" required>
+            <input type="password" class="form-control mt-2" id="password" name="password" placeholder="Password" required>
+          
+            <div class="mt-3">
+              <button class="btn btn-success btn-lg btn-block">Sign Up</button>
+           
+        </form>
+        </div>
+    </div>
 
 
 {% endblock %}

@@ -4,10 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title%} {% endblock %}</title>
-    <link rel="icon" type="image/png" href="static/img/Kodai_Mining.png">
+    <link rel="icon" type="image/gif" href="static/img/7fae97b0d62464f833f75a7cce0a9902.gif">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+    <style> 
+/* Fullscreen video background */ 
+#bg-video {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* fills viewport without stretching */
+    z-index: -1;
+}
+
+/* Content on top of the video */ 
+.content { 
+    position: relative; 
+    z-index: 1; 
+    color: white; 
+    text-align: center; 
+    margin-top: 20vh; 
+} 
+</style> 
 
 
     {% block head%}
