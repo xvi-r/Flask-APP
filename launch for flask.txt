@@ -1,3 +1,11 @@
+## Use these commands for local development ##
+
 .\.venv\Scripts\activate
 $env:FLASK_ENV="development"
-flask shell
+
+## To use the Network Scanner (Temporary) ##
+
+>>> from network_scanner import scan_all_networks
+>>> from app import app
+>>> with app.app_context():
+...     scan_all_networks(1, 5000)

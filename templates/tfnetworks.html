@@ -13,11 +13,7 @@
         {% endfor %}
     {% endwith %}
     
-    <style>
-        body {
-            background-color: darkseagreen;
-        }
-    </style>
+
 
     <body class="d-flex flex-column justify-content-center align-items-center vh-20 text-center"> 
     
@@ -28,6 +24,7 @@
 </video> 
     
     <h1 style="color: azure;">TITANFALL2 NETWORKS</h1><hr>
+    <p style="color: azure;">Only search 1 term at a time</p>
 
 {% if network %}
 <div class="container-fluid text-center p-3">
@@ -76,9 +73,13 @@
     </table>   
 </div>
 
-    <form action="#" method="POST">
-        
-            <input class="form-control" type="number" id="networkID" name="networkID" placeholder="Network ID">
+    <form action="/tfnetworks" method="POST">
+
+            <input class="form-control text-white border-secondary bg-dark " type="text" id="networkName" name="networkName" placeholder="Search via name">
+
+            <input class="form-control mt-2 text-white border-secondary bg-dark" type="number" id="networkID" name="networkID" placeholder="Search via ID">
+
+            <input class="form-control mt-2 text-white border-secondary bg-dark" type="text" id="creatorName" name="creatorName" placeholder="Search via Creator Name">
     
         <input class="mt-2 btn btn-secondary" type="submit" value="Search">
     </form>

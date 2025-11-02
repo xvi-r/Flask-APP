@@ -219,14 +219,36 @@ def emailMe():
         flash("You must be logged in")
     return redirect(url_for("home"))
 
+#TODO rewrite with better logic later
 @app.route("/tfnetworks", methods = ["POST", "GET"])
 def tfnetworks():
     if request.method == "POST":
+        networkName = request.form.get("networkName")
         networkID = request.form.get("networkID")
-        network = TF2_Networks.query.filter_by(id = networkID).first()
-        if network:
+        creatorName = request.form.get("creatorName")
+        
+        #This will run if user searched via network ID
+        if networkID:
+            
+            network = TF2_Networks.query.filter_by(id = networkID).first()
+        
+        
+        #This will run if user searched via network name (This can be cleaned up but atm this is what i've thought off, might use a matchcase or better queries)
+        elif networkName:
+            search_term = f"%{networkName}%"
+            
+            network = TF2_Networks.query.filter(TF2_Networks.name.ilike(search_term)).first()
+        
+        else :
+            search_term = f"%{creatorName}%"
+            network = TF2_Networks.query.filter(TF2_Networks.creatorName.ilike(search_term)).first()
+            
+        if network == None:
+            print("HIT")
+            flash(f"inaccessible private network")
+        else:
             return render_template("tfnetworks.html", network = network)
-        flash(f"{networkID} is a private network")
+        
         
     return render_template("tfnetworks.html")
 
