@@ -21,37 +21,46 @@
 
     <body class="d-flex flex-column justify-content-center align-items-center vh-20 text-center"> 
     
-    <h1>TITANFALL2 NETWORKS</h1><hr>
+        <!-- Background video --> 
+<video id="bg-video" autoplay muted loop playsinline preload="auto"> 
+    <source src="https://backgroundvids.fra1.cdn.digitaloceanspaces.com/videoplayback%20(1).webm" type="video/webm"> 
+    Your browser does not support the video tag. 
+</video> 
+    
+    <h1 style="color: azure;">TITANFALL2 NETWORKS</h1><hr>
 
-    {% if network %}
-        <table border="1" style="width:50%; text-align:left;">
-            <th>ID</th>
-            <th>Name</th>
-            <th>clantag</th>
-            <th>Motd</th>
-            <th>Category</th>
-            <th>Type</th>
-            <th>Visibility</th>
-            <th>Regions</th>
-            <th>Languages</th>
-            <th>utcHappyHourStart</th>
-            <th>HappyHourStart</th>
-            <th>Creator UID</th>
-            <th>Creator Name</th>
-            <th>Kills</th>
-            <th>Wins</th>
-            <th>Xp</th>
-            <th>Member Count</th>
-
+{% if network %}
+<div class="container-fluid text-center p-3">
+<table class="table table-dark">
+    <thead>
+        <tr>
+            <th scope="col">  ID</th>
+            <th scope="col">Name</th>
+            <th scope="col">clantag</th>
+            <th scope="col">Motd</th>
+            <th scope="col">Category</th>
+            <th scope="col">Type</th>
+            <th scope="col">Visibility</th>
+            <th scope="col">Regions</th>
+            <th scope="col">Languages</th>
+            <th scope="col">utcHappyHourStart</th>
+            <th scope="col">HappyHourStart</th>
+            <th scope="col">Creator UID</th>
+            <th scope="col">Creator Name</th>
+            <th scope="col">Kills</th>
+            <th scope="col">Wins</th>
+            <th scope="col">Xp</th>
+            <th scope="col">Member Count</th>
+        </tr>
                 <tr>    
                     <td>{{network.id}}</td>
                     <td>{{network.name}}</td>
                     <td>{{network.clantag}}</td>
                     <td>{{network.motd}}</td>
-                    <td>{{network.category}}</td>
-                    <td>{{network.type}}</td>
-                    <td>{{network.visibility}}</td>
-                    <td>{{network.regions}}</td>
+                    <td>{{network.category.capitalize()}}</td>
+                    <td>{{network.type.capitalize()}}</td>
+                    <td>{{network.visibility.capitalize()}}</td>
+                    <td>{{network.regions.capitalize()}}</td>
                     <td>{{network.languages}}</td>
                     <td>{{network.utcHappyHourStart}}</td>
                     <td>{{network.happyHourStart}}</td>
@@ -65,12 +74,13 @@
     {% endif %}
         
     </table>   
+</div>
 
     <form action="#" method="POST">
-        <label for="networkID">Network ID: </label>
-        <input type="number" id="networkID" name="networkID">
-
-        <input type="submit" value="submit">
+        
+            <input class="form-control" type="number" id="networkID" name="networkID" placeholder="Network ID">
+    
+        <input class="mt-2 btn btn-secondary" type="submit" value="Search">
     </form>
 
 
