@@ -18,7 +18,6 @@ else:
     DB_URI = os.environ.get("DATABASE_URI")
     
     
-adminUsers = os.environ.get("ADMIN_USERS")
 bannedIPs = []
 
 SPAIN_TIMEZONE = pytz.timezone("Europe/Madrid")
@@ -203,7 +202,6 @@ def admin():
         flash("ERROR: User is not an admin")
         return redirect(url_for("home"))
     
-
 
 @app.route("/emailMe", methods=["POST","GET"])
 def emailMe():
