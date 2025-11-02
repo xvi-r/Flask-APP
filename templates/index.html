@@ -4,7 +4,7 @@
 {% block head%} 
 <style>  
 h1 {color: rgb(0, 255, 64); filter: drop-shadow(0 0 0.75rem rgb(0, 255, 76));} 
-h2 {color: rgb(0, 174, 243); filter: drop-shadow(0 0 0.75rem rgb(0, 89, 255));} 
+h2 {color: rgb(0, 174, 243); filter: drop-shadow(0 0 0.75rem rgb(97, 97, 97));} 
 h3 {color:rgb(255, 0, 200); filter: drop-shadow(0 0 0.75rem rgb(225, 0, 255));}
 </style> 
 {% endblock %} 
@@ -33,7 +33,7 @@ h3 {color:rgb(255, 0, 200); filter: drop-shadow(0 0 0.75rem rgb(225, 0, 255));}
 
     <h1 class="mt-2"> Welcome </h1> 
     {% if "username" in session %} 
-    <h3 style="color: rgb(0, 169, 236); filter: drop-shadow(0 0 0.75rem rgb(135, 211, 255));">Hi {{session["username"]}} How are you?</h3> 
+    <h3 style="color: rgb(0, 174, 243); filter: drop-shadow(0 0 0.75rem rgb(97, 97, 97))">Hi {{session["username"]}} How are you?</h3> 
     {% endif %} 
     <h2>{{curDate}}</h2> 
     <h2 style="color: orange;">{{curTime}}</h2> 
@@ -42,7 +42,7 @@ h3 {color:rgb(255, 0, 200); filter: drop-shadow(0 0 0.75rem rgb(225, 0, 255));}
 {% if "username" in session %} 
 <h3> Logged in at: {{seshTS}}</h3> 
 {% else %} 
-<h2 style="color: rgb(255, 0, 0);">Please Log In</h2> 
+<h2 style="color: rgb(255, 0, 0); filter: drop-shadow(0 0 0.75rem rgb(44, 0, 0));">Please Log In</h2> 
 {% endif %} 
 
 <div class="mt-4"style="filter: drop-shadow(0 0 0.75rem rgb(126, 126, 126));">

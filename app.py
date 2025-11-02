@@ -192,18 +192,17 @@ def admin():
         
         flash("USER DELETED")
     
-    if "username" in session:
-        #TODO this logic will be replaced via a database query instead
-        if session.get("username") in adminUsers:
-            
-            flash(f"Access Granted {session["username"]} is admin")
-            return render_template("admin.html", userList=Users.query.all())
-        else:
-            flash("ERROR: User is not an admin")
-            return redirect(url_for("home"))
-    else:
+    if "username" not in session:
         flash("You Must Be Logged In")
         return redirect(url_for("home"))
+    
+    if Users.query.filter_by(email = session.get("email"), is_admin=True).first() !=None:
+            flash(f"Access Granted {session["username"]} is admin")
+            return render_template("admin.html", userList=Users.query.all())
+    else:
+        flash("ERROR: User is not an admin")
+        return redirect(url_for("home"))
+    
 
 
 @app.route("/emailMe", methods=["POST","GET"])

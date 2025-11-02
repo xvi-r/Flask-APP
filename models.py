@@ -17,8 +17,8 @@ class Users(db.Model):
     password_hash = db.Column(db.String(255), nullable=False)  # NOTE Hashes tend to be long better to use 255 chars
     
     #Tracking and Roles
-    creationDate = db.Column(db.DateTime, default=datetime.utcnow)
-    is_admin = db.Column(db.Boolean,  default=False) #Gonna be moving admin accessibility logic to the database now instead of a list in .env
+    creationDate = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+    is_admin = db.Column(db.Boolean, nullable=False, default=False) #Gonna be moving admin accessibility logic to the database now instead of a list in .env
     
     def __init__(self, name, email, ip, password):
         self.name = name
@@ -39,7 +39,7 @@ class Users(db.Model):
         self._password_hash = generate_password_hash(plain_text_password)
         
     def __repr__(self):
-        return f"User: ID:{self._id}, Name: {self.name} Email:{self.email} Creation Date: {self.creationDate}"
+        return f"User: ID:{self._id}, Name: {self.name} Email:{self.email} Creation Date: {self.creationDate}, is_admin: {self.is_admin}"
 
 #------------------------
 # --- Streamers Table ---
