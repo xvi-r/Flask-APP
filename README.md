@@ -1,4 +1,4 @@
-# 🐍 Flask Production Deployment & Hybrid Database Model
+# Flask Production Deployment & Hybrid Database Model
 
 **Project Goal:** To build a robust, production-ready Flask application while mastering the transition from local development to a secure, professional cloud environment.
 
@@ -29,7 +29,13 @@ The live application demonstrates standard and external service integrations:
 
 ***
 
-### ⚙️ Get Started Locally
+### Todo
+* Add user profile pictures
+* Add user bios 
+* Potentially connect a weather api
+
+
+###  Get Started Locally
 
 To run this application locally and begin development:
 
