@@ -25,7 +25,7 @@ SPAIN_TIMEZONE = pytz.timezone("Europe/Madrid")
 app = Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY")
 app.config["PERMANENT_SESSION_LIFETIME"] = timedelta(minutes=60)
-app.config["SQLALCHEMY_DATABASE_URI"] = "mysql://doadmin:AVNS_77telqMtl1t0UktN45T@flask-user-mysql-db-do-user-28139050-0.d.db.ondigitalocean.com:25060/defaultdb"
+app.config["SQLALCHEMY_DATABASE_URI"] = DB_URI
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
 
 db.init_app(app)
