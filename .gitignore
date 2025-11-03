@@ -3,6 +3,7 @@
 # ------------------------------------
 .env
 venv/
+.vscode/
 
 # ------------------------------------
 # 2. LOCAL DATA AND DATABASES (MYSQL USERS)

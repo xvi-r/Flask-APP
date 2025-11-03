@@ -21,7 +21,7 @@ h3 {color:rgb(255, 0, 200); filter: drop-shadow(0 0 0.75rem rgb(225, 0, 255));}
 
 
 </head> 
-<body class="d-flex flex-column justify-content-center align-items-center vh-20 text-center"> 
+<body class="d-flex flex-column justify-content-center align-items-center vh-20 text-center" data-bs-theme="dark"> 
 
     
 
@@ -45,9 +45,19 @@ h3 {color:rgb(255, 0, 200); filter: drop-shadow(0 0 0.75rem rgb(225, 0, 255));}
 <h2 style="color: rgb(255, 0, 0); filter: drop-shadow(0 0 0.75rem rgb(44, 0, 0));">Please Log In</h2> 
 {% endif %} 
 
+<div class="card mt-2" style="width: 18rem;">
+  <img src="{{ url_for('static', filename='img/dc644b107345049.5fa4ae1b8c86e.gif') }}" class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">Titanfall Network Scanner</h5>
+    <p class="card-text">Access The Full Titanfall Network Database with over 400000 networks</p>
+    <a href="{{url_for('tfnetworks')}}" class="btn btn-primary">Titanfall Network Scanner</a>
+  </div>
+</div>
+
+
+
 <div class="mt-4"style="filter: drop-shadow(0 0 0.75rem rgb(126, 126, 126));">
   <a href="{{url_for('login')}}" class="btn btn-primary m-2 px-4">Login</a>
-  <a href="{{url_for('tfnetworks')}}" class="btn btn-primary m-2 px-4">TF Networks</a>
   <a href="{{url_for('signup')}}" class="btn btn-primary m-2 px-4">Sign Up</a>
   <a href="{{ url_for('emailMe') }}" class="btn btn-info m-2 px-4">Email Me</a>
   <a href="{{ url_for('userview') }}" class="btn btn-info m-2 px-4">User View</a>
