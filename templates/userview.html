@@ -1,21 +1,95 @@
 {% extends "base.html" %}
-{% block title%}User View{% endblock %}
+{% block title %}User View{% endblock %}
 
 {% block head%}
 <style>
-body {background: linear-gradient(90deg,rgba(0, 170, 255, 1) 0%, rgba(145, 0, 0, 1) 100%);}
-h1   {color: blue;}
-p    {color: red;}
+/* 1. Body Background: Maintain your custom linear gradient */
+body {
+    /* Use vh-100 to ensure the gradient covers the whole screen */
+    background: linear-gradient(90deg, rgba(0, 170, 255, 1) 0%, rgba(145, 0, 0, 1) 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center; /* Center content vertically */
+    justify-content: center; /* Center content horizontally */
+}
+
+/* 2. Custom Color Styling (for the header text) */
+.profile-title {
+    color: white; /* Ensure text is visible on the gradient */
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    margin-bottom: 2rem;
+}
+
+/* 3. Card Styling (Make it look nice) */
+.profile-card {
+    /* Slightly transparent dark background (Glassmorphism look) */
+    background-color: rgba(33, 37, 41, 0.9); 
+    border-radius: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.detail-label {
+    color: #b0b0b0; /* Light gray for labels */
+    font-weight: 500;
+}
+
+.detail-value {
+    color: rgb(180, 180, 180);
+    font-size: 1.1rem;
+}
 </style>
 {% endblock %}
 
 {% block body%}
 
-    <h1>User View</h1>
-    <h2 style="color: blueviolet;"> Username: {{username}}</h2>
-    <h2 style="color: chartreuse;"> Username: {{email}}</h2>
+<!--Bg video-->
+<video id="bg-video" autoplay muted loop playsinline preload="auto"> 
+    <source src="https://backgroundvids.fra1.cdn.digitaloceanspaces.com/4K%20Space%20Starfield%20Background.mp4" type="video/mp4"> 
+    Your browser does not support the video tag. 
+</video> 
 
-    <img src="{{url_for('static', filename='img/Kodai_Mining.png')}}" title="Kodai Certified"><br>
-     <a href="{{ url_for('home')}}">Home</a>
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6 col-lg-5"> 
+            
+            <h1 class="profile-title">User Profile View</h1>
+            
+            <div class="card profile-card text-white p-4">
+                <div class="card-body">
+                    <div class="text-center mb-4">
+                        <img src="https://placehold.co/100x100/6A6E8C/FFFFFF?text=USER" 
+                             class="rounded-circle mb-3" 
+                             alt="Profile Image" 
+                             style="border: 3px solid chartreuse;">
+                        <h2 class="card-title mb-0" style="color: blueviolet;">{{ username }}</h2>
+                        <p class="text-white-50">Member since: {{creationDate}}</p>
+                    </div>
+                    
+                    <hr>
+
+                    <!-- Details Section -->
+                    <div class="row text-start mt-4">
+                        
+                        <!-- Email Detail -->
+                        <div class="col-12 mb-3">
+                            <p class="detail-label mb-1">Email Address:</p>
+                            <p class="detail-value">{{ email }}</p>
+                            {% if is_admin == 1 %}
+                            <p style="color: red;" class="detail-value">ADMIN</p>
+                            {% endif %}
+                        </div>
+
     
+
+                    </div>
+                    
+                    <a href="{{ url_for('home') }}" class="btn btn-secondary mt-4">Return to Home</a>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
 {% endblock %}
