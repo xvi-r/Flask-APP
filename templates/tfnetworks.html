@@ -15,7 +15,7 @@
     
 
 
-    <body class="d-flex flex-column justify-content-center align-items-center vh-20 text-center"> 
+    <body class="d-flex flex-column justify-content-center align-items-center vh-20 text-center" data-bs-theme="dark"> 
     
         <!-- Background video --> 
 <video id="bg-video" autoplay muted loop playsinline preload="auto"> 
@@ -26,14 +26,16 @@
     <h1 style="color: azure;">TITANFALL2 NETWORKS</h1><hr>
     <p style="color: azure;">Only search 1 term at a time</p>
 
-{% if network %}
-<div class="container-fluid text-center p-3">
-<table class="table table-dark">
+{% if networklist %}
+<div class="container-fluid text-center p-3 ">
+
+    <div class="table-responsive custom-table-shadow rounded-3"  >
+    <table class="table table-striped table-bordered ">
     <thead>
         <tr>
-            <th scope="col">  ID</th>
+            <th scope="col">ID</th>
             <th scope="col">Name</th>
-            <th scope="col">clantag</th>
+            <th scope="col">Clantag</th>
             <th scope="col">Motd</th>
             <th scope="col">Category</th>
             <th scope="col">Type</th>
@@ -49,8 +51,9 @@
             <th scope="col">Xp</th>
             <th scope="col">Member Count</th>
         </tr>
+        {% for network in networklist %}
                 <tr>    
-                    <td>{{network.id}}</td>
+                    <th scope="row">{{network.id}}</td>
                     <td>{{network.name}}</td>
                     <td>{{network.clantag}}</td>
                     <td>{{network.motd}}</td>
@@ -67,19 +70,31 @@
                     <td>{{network.wins}}</td>
                     <td>{{network.xp}}</td>
                     <td>{{network.memberCount}}</td>
-                </tr>                                                           
+                </tr>             
+        {% endfor %}                                              
     {% endif %}
         
     </table>   
 </div>
+</div>
 
     <form action="/tfnetworks" method="POST">
 
-            <input class="form-control text-white border-secondary bg-dark " type="text" id="networkName" name="networkName" placeholder="Search via name">
+            <div data-mdb-input-init class="form-floating mb-4">
+              <input type="text" id="networkName" name="networkName" class="form-control form-control-lg text-white border-secondary bg-dark" placeholder="Username" style="filter: drop-shadow(0 0 0.5rem rgb(48, 48, 48));"  />
+              <label for="networkName" class="form-label">Search via Name</label>
+            </div>
 
-            <input class="form-control mt-2 text-white border-secondary bg-dark" type="number" id="networkID" name="networkID" placeholder="Search via ID">
+            <div data-mdb-input-init class="form-floating mb-4">
+              <input type="number" id="networkID" name="networkID" class="form-control form-control-lg text-white border-secondary bg-dark" placeholder="Username" style="filter: drop-shadow(0 0 0.5rem rgb(48, 48, 48));"  />
+              <label for="networkID" class="form-label">Search via ID</label>
+            </div>
 
-            <input class="form-control mt-2 text-white border-secondary bg-dark" type="text" id="creatorName" name="creatorName" placeholder="Search via Creator Name">
+            <div data-mdb-input-init class="form-floating mb-4">
+              <input type="text" id="creatorName" name="creatorName" class="form-control form-control-lg text-white border-secondary bg-dark" placeholder="Username" style="filter: drop-shadow(0 0 0.5rem rgb(48, 48, 48));"  />
+              <label for="creatorName" class="form-label">Search via Creator Name</label>
+            </div>
+
     
         <input class="mt-2 btn btn-secondary" type="submit" value="Search">
     </form>
