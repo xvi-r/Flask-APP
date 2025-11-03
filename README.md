@@ -25,7 +25,7 @@ The live application demonstrates standard and external service integrations:
     * Login validation handles scenarios where **no user exists** or the **password is incorrect**.
 * **Twitch API Integration:** Connects to the Twitch API to **check if a specified streamer is live**.
 * **Email Notifications:** Sends an email notification to the administrator upon new user sign-up.
-* **Titanfall Network Database:** Table of all 65000+ Networks in titanfall.
+* **Titanfall Network Database:** Table of all 400000+ Networks in titanfall.
 
 ***
 
