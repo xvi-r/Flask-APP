@@ -26,8 +26,9 @@ The live application demonstrates standard and external service integrations:
 * **Twitch API Integration:** Connects to the Twitch API to **check if a specified streamer is live**.
 * **Email Notifications:** Sends an email notification to the administrator upon new user sign-up.
 * **Titanfall Network Database:** Table of all 400000+ Networks in titanfall.
-
-![Query Example]("Flask-APP/Project Showcase/Query Example.png")
+  
+* **Example Query**
+![Query Example](/Project%20Showcase/Query%20Example.png)
 
 ***
 
