@@ -27,7 +27,7 @@ The live application demonstrates standard and external service integrations:
 * **Email Notifications:** Sends an email notification to the administrator upon new user sign-up.
 * **Titanfall Network Database:** Table of all 400000+ Networks in titanfall.
 
-![Query Example](Flask-APP/Project%20Showcase/Query%20Example.png)
+![Query Example]("Flask-APP/Project Showcase/Query Example.png")
 
 ***
 
