@@ -160,7 +160,11 @@ def userview():
     else:
         username = session.get("username")
         email = session.get("email")
-        return render_template("userview.html", username = username, email = email )
+        
+        #TODO change later current test 
+        currentUser = Users.query.filter_by(email = email, name = username).first()
+        
+        return render_template("userview.html", username = username, email = email, creationDate = currentUser.creationDate, is_admin = currentUser.is_admin)
 
 
 @app.route("/logout")
@@ -230,24 +234,24 @@ def tfnetworks():
         #This will run if user searched via network ID
         if networkID:
             
-            network = TF2_Networks.query.filter_by(id = networkID).first()
+            network = TF2_Networks.query.filter_by(id = networkID).all() #changed to return a list even if it's just one value
         
         
         #This will run if user searched via network name (This can be cleaned up but atm this is what i've thought off, might use a matchcase or better queries)
         elif networkName:
             search_term = f"%{networkName}%"
             
-            network = TF2_Networks.query.filter(TF2_Networks.name.ilike(search_term)).first()
+            network = TF2_Networks.query.filter(TF2_Networks.name.ilike(search_term)).all()
         
         else :
             search_term = f"%{creatorName}%"
-            network = TF2_Networks.query.filter(TF2_Networks.creatorName.ilike(search_term)).first()
+            network = TF2_Networks.query.filter(TF2_Networks.creatorName.ilike(search_term)).all()
             
         if network == None:
             print("HIT")
             flash(f"inaccessible private network")
         else:
-            return render_template("tfnetworks.html", network = network)
+            return render_template("tfnetworks.html", networklist = network)
         
         
     return render_template("tfnetworks.html")
