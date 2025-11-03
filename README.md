@@ -30,6 +30,7 @@ The live application demonstrates standard and external service integrations:
 ***
 
 ### Todo
+* MUST DO move banned users to database for persistence
 * Add user profile pictures
 * Add user bios 
 * Potentially connect a weather api
