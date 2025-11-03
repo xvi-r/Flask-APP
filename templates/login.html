@@ -25,7 +25,7 @@
 </video> 
     
 
-<section class="vh-100" >
+<section class="vh-100" data-bs-theme="dark" >
   <div class="container py-5 h-100" >
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5" style="filter: drop-shadow(0 0 0.5rem rgb(98, 123, 146));">
@@ -38,16 +38,19 @@
 
             <h3 class="mb-5">Log In</h3>
 
-            <div data-mdb-input-init class="form-outline mb-4">
+            <div data-mdb-input-init class="form-floating mb-4">
               <input type="text" id="username" name="username" class="form-control form-control-lg text-white border-secondary bg-dark" placeholder="Username" style="filter: drop-shadow(0 0 0.5rem rgb(48, 48, 48));" required />
+              <label for="username" class="form-label">Username</label>
             </div>
 
-            <div data-mdb-input-init class="form-outline mb-4">
+            <div data-mdb-input-init class="form-floating mb-4">
               <input type="email" id="email" name="email" class="form-control form-control-lg text-white border-secondary bg-dark" placeholder="Email" style="filter: drop-shadow(0 0 0.5rem rgb(48, 48, 48));" required/>
+              <label for="username" class="form-label">Email</label>
             </div>
 
-            <div data-mdb-input-init class="form-outline mb-4">
+            <div data-mdb-input-init class="form-floating mb-4">
               <input type="password" id="password" name="password" class="form-control form-control-lg text-white border-secondary bg-dark" placeholder="Password" style="filter: drop-shadow(0 0 0.5rem rgb(48, 48, 48));" required />
+              <label for="username" class="form-label">Password</label>
             </div>
 
             <button data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg btn-block" type="submit" style="filter: drop-shadow(0 0 0.75rem rgb(0, 23, 54));">Login</button>
