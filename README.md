@@ -27,7 +27,8 @@ The live application demonstrates standard and external service integrations:
 * **Email Notifications:** Sends an email notification to the administrator upon new user sign-up.
 * **Titanfall Network Database:** Table of all 400000+ Networks in titanfall.
   
-* **Example Query**
+* **Example Query;**
+ Name = Quak
 ![Query Example](/Project%20Showcase/Query%20Example.png)
 
 ***
